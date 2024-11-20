@@ -1,5 +1,3 @@
-// arquivo arvore.h
-
 #include "livro.h"
 
 typedef struct No 

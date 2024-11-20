@@ -1,5 +1,3 @@
-// arquivo livro.h
-
 typedef struct Livro 
 {
     int codigo;
