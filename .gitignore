@@ -1,0 +1,38 @@
+# Arquivos de build
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.a
+*.lib
+
+# Pastas comuns de build
+build/
+dist/
+
+# Arquivos de depuração
+*.dSYM/
+*.stackdump
+vgcore.*
+
+# Arquivos temporários do editor
+*.swp
+*.tmp
+*.bak
+*.log
+
+# Arquivos de configuração do editor de texto/IDE
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos do gerenciador de pacotes (se houver)
+node_modules/    # Apenas se usar Node.js no mesmo projeto
