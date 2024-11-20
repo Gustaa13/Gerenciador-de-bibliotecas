@@ -1,5 +1,3 @@
-// arquivo arvore.c
-
 #include <stdio.h>
 #include "../include/arvore.h"
 
