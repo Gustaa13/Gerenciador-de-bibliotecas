@@ -11,6 +11,8 @@
 # Pastas comuns de build
 build/
 dist/
+/build/
+
 
 # Arquivos de depuração
 *.dSYM/
