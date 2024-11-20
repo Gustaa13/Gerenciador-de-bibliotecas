@@ -1,3 +1,5 @@
+// arquivo livro.h
+
 typedef struct Livro 
 {
     int codigo;
@@ -8,3 +10,4 @@ typedef struct Livro
     char editora[50];
     int paginas;
 }Livro;
+

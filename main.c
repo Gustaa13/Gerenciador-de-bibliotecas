@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "../include/arvore.h"
-#include "../include/util.h"
+#include "include/arvore.h"
+#include "include/util.h"
 
 int main(){
 
-    printf("Hello, World!");
+    printf("Hello, World!\n");
 
     return 0;
 }
