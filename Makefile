@@ -7,9 +7,9 @@ INCLUDE_DIR = include
 BUILD_DIR = build
 
 # Arquivos de origem e cabeçalho
-SRCS = $(SRC_DIR)/arvore.c $(SRC_DIR)/livro.c $(SRC_DIR)/util.c main.c
+SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
-HEADERS = $(INCLUDE_DIR)/arvore.h $(INCLUDE_DIR)/livro.h $(INCLUDE_DIR)/util.h
+HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 
 # Compilador e flags
 CC = gcc
