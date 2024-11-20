@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "include/arvore.h"
-#include "include/util.h"
+#include "../include/arvore.h"
+#include "../include/util.h"
 
 int main(){
 

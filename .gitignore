@@ -27,10 +27,6 @@ vgcore.*
 
 # Arquivos de configuração do editor de texto/IDE
 .vscode/
-.idea/
-*.code-workspace
-*.sublime-workspace
-*.sublime-project
 
 # Arquivos do sistema operacional
 .DS_Store
@@ -38,3 +34,6 @@ Thumbs.db
 
 # Arquivos do gerenciador de pacotes (se houver)
 node_modules/    # Apenas se usar Node.js no mesmo projeto
+
+# Executáveis
+biblioteca
