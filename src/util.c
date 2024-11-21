@@ -66,7 +66,6 @@ void limpador_de_buffer(){
 
 void reiniciar_arquivo(char* nome_arquivo){
     FILE* arquivo = fopen(nome_arquivo, "w");
-    fprintf(arquivo, "");
     fclose(arquivo);
 }
 
@@ -102,4 +101,53 @@ int aumentar_biblioteca(Biblioteca* biblioteca){
     biblioteca->livros = temporario;
     biblioteca->tamanho++;
     return 1;
+}
+
+void menu(){
+    printf("======== MENU PRINCIPAL ========\n");
+
+    printf("Selecione uma das operações abaixo:\n");
+
+    printf("1 - Cadastrar um novo livro\n");
+    printf("2 - Consultar livros por gênero\n");
+    printf("3 - Exibir todos os livros na biblioteca\n");
+    printf("4 - Finalizar o programa\n");
+
+    printf("Digite o número da operação desejada: ");
+}
+
+void menuOperacoes(int input, char* nome_arquivo, No* raiz){
+
+    switch (input)
+    {
+    case 1:
+        // inserção de livro pelo usuário
+        Livro livro = cadastrar_livro();
+        inserir_livro(&raiz, livro);
+        salvar_arvore(nome_arquivo, raiz);
+        break;
+    case 2:
+        // Busca por gênero
+        Biblioteca *biblioteca = iniciar_biblioteca();
+
+        printf("Digite o genero que deseja procurar: ");
+        char *genero = leitor_de_palavras();
+
+        buscar_por_genero(raiz, genero, biblioteca);
+        printf("\n--- Livros do genero %s ---\n\n", genero);
+        exibir_biblioteca(*biblioteca);
+        liberar_biblioteca(biblioteca);
+        free(genero);
+        break;
+    case 3:
+        printf("\n---- Livros carregados ---- \n\n");
+        exibir_arvore(raiz);
+        break;
+    case 4:
+        printf("Obrigado por usar os nossos serviços!\n");
+        break;
+    default:
+        printf("Opcão inválida\n");
+        break;
+    }
 }

@@ -16,36 +16,45 @@ Biblioteca* iniciar_biblioteca(){
 
 Livro cadastrar_livro(){
     Livro livro;
+    char* entrada;
 
     printf("Digite o codigo do livro: ");
     livro.codigo = leitor_de_numeros();
 
     printf("Digite o titulo do livro: ");
-    strcpy(livro.titulo, leitor_de_palavras());
+    entrada = leitor_de_palavras();
+    strcpy(livro.titulo, entrada);
+    free(entrada);
+    
 
     printf("Digite o autor do livro: ");
-    strcpy(livro.autor, leitor_de_palavras());
+    entrada = leitor_de_palavras();
+    strcpy(livro.autor, entrada);
+    free(entrada);
 
     printf("Digite o gênero do livro: ");
-    strcpy(livro.genero, leitor_de_palavras());
+    entrada = leitor_de_palavras();
+    strcpy(livro.genero, entrada);
+    free(entrada);
 
     printf("Digite o ano do livro: ");
     livro.ano = leitor_de_ano();
 
     printf("Digite a editoria do livro: ");
-    strcpy(livro.editora, leitor_de_palavras());
+    entrada = leitor_de_palavras();
+    strcpy(livro.editora, entrada);
+    free(entrada);
 
     printf("Digite o numero de paginas do livro: ");
     livro.paginas = leitor_de_numeros();
 
+    
     return livro;
 }
 
-void liberar_livro(Livro* livro) {
-    free(livro->titulo);
-    free(livro->autor);
-    free(livro->genero);
-    free(livro->editora);
+void liberar_biblioteca(Biblioteca* biblioteca) {
+    free(biblioteca->livros);
+    free(biblioteca);
 }
 
 void salvar_livro(char* nome_arquivo, Livro livro){
