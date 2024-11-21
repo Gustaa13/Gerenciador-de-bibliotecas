@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/arvore.h"
+#include "../include/util.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -15,7 +15,7 @@ void inserir_livro(No** raiz, Livro livro) {
     if (*raiz == NULL) {
         *raiz = (No*)malloc(sizeof(No));
         if (*raiz == NULL) {
-            perror("Erro ao alocar memória para o nó");
+            perror("Erro ao alocar memoria para o no");
             exit(1);
         }
         (*raiz)->livro = livro;
@@ -28,13 +28,25 @@ void inserir_livro(No** raiz, Livro livro) {
         inserir_livro(&(*raiz)->esquerda, livro); 
     } else if (livro.codigo > (*raiz)->livro.codigo) {
         inserir_livro(&(*raiz)->direita, livro); 
+    } else {
+        printf("\nEsse id ja esta sendo usado!\n");
     }
 }
 
 
-/* void buscar_por_genero(No* raiz, char genero[]){
-
-}*/
+void buscar_por_genero(No* raiz, char* genero, Biblioteca* biblioteca){
+    if(!arvore_vazia(raiz)){
+        if(!(comparador_de_palavras(raiz->livro.genero, genero))){
+            if(aumentar_biblioteca(biblioteca)){
+                biblioteca->livros[biblioteca->tamanho - 1] = raiz->livro;
+            }else{
+                return;
+            }
+        }
+        buscar_por_genero(raiz->esquerda, genero, biblioteca);
+        buscar_por_genero(raiz->direita, genero, biblioteca);
+    }
+}
 
 No* carregar_livros(char* nome_arquivo, No* raiz){
     
@@ -54,7 +66,7 @@ No* carregar_livros(char* nome_arquivo, No* raiz){
         Livro *livro = malloc(sizeof(Livro));
 
         if (!livro){
-            perror("Erro ao alocar memória para Livro");
+            perror("Erro ao alocar memoria para Livro");
             fclose(file);
             return NULL;
         }
@@ -94,14 +106,7 @@ No* carregar_livros(char* nome_arquivo, No* raiz){
 void exibir_arvore(No* raiz){
     if (raiz != NULL) {
         exibir_arvore(raiz->esquerda);
-        printf("Livro:\n");
-        printf("  Codigo: %d\n", raiz->livro.codigo);
-        printf("  Titulo: %s\n", raiz->livro.titulo);
-        printf("  Autor: %s\n", raiz->livro.autor);
-        printf("  Genero: %s\n", raiz->livro.genero);
-        printf("  Ano: %d\n", raiz->livro.ano);
-        printf("  Editora: %s\n", raiz->livro.editora);
-        printf("  Paginas: %d\n\n", raiz->livro.paginas);
+        exibir_livro(raiz->livro);
         exibir_arvore(raiz->direita);
     }
 }
