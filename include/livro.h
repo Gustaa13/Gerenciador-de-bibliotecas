@@ -9,3 +9,6 @@ typedef struct Livro
     int paginas;
 }Livro;
 
+Livro cadastrar_livro();
+void liberar_livro(Livro* livro);
+void salvar_livro(char* nome_arquivo, Livro livro);

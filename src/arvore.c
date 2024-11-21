@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINHAS 100  // Número máximo de linhas no arquivo
-#define TAM_LINHA 1024  // Tamanho máximo de cada linha
+#define MAX_LINHAS 100  
+#define TAM_LINHA 1024  
 
 No* inicializar_arvore(){
     No* no = NULL;
@@ -13,7 +13,6 @@ No* inicializar_arvore(){
 
 void inserir_livro(No** raiz, Livro livro) {
     if (*raiz == NULL) {
-        // Criar um novo nó e atribuí-lo ao ponteiro raiz
         *raiz = (No*)malloc(sizeof(No));
         if (*raiz == NULL) {
             perror("Erro ao alocar memória para o nó");
@@ -26,16 +25,16 @@ void inserir_livro(No** raiz, Livro livro) {
     }
 
     if (livro.codigo < (*raiz)->livro.codigo) {
-        inserir_livro(&(*raiz)->esquerda, livro); // Inserir à esquerda
+        inserir_livro(&(*raiz)->esquerda, livro); 
     } else if (livro.codigo > (*raiz)->livro.codigo) {
-        inserir_livro(&(*raiz)->direita, livro); // Inserir à direita
+        inserir_livro(&(*raiz)->direita, livro); 
     }
 }
 
 
-// void buscar_por_genero(No* raiz, char genero[]){
+/* void buscar_por_genero(No* raiz, char genero[]){
 
-// }
+}*/
 
 No* carregar_livros(char* nome_arquivo, No* raiz){
     
@@ -96,19 +95,35 @@ void exibir_arvore(No* raiz){
     if (raiz != NULL) {
         exibir_arvore(raiz->esquerda);
         printf("Livro:\n");
-        printf("  Código: %d\n", raiz->livro.codigo);
-        printf("  Título: %s\n", raiz->livro.titulo);
+        printf("  Codigo: %d\n", raiz->livro.codigo);
+        printf("  Titulo: %s\n", raiz->livro.titulo);
         printf("  Autor: %s\n", raiz->livro.autor);
-        printf("  Gênero: %s\n", raiz->livro.genero);
+        printf("  Genero: %s\n", raiz->livro.genero);
         printf("  Ano: %d\n", raiz->livro.ano);
         printf("  Editora: %s\n", raiz->livro.editora);
-        printf("  Páginas: %d\n\n", raiz->livro.paginas);
+        printf("  Paginas: %d\n\n", raiz->livro.paginas);
         exibir_arvore(raiz->direita);
     }
 }
 
-// void liberar_arvore(No* raiz){
+int arvore_vazia(No *raiz){
+    return raiz == NULL;
+}
 
-// }
+void liberar_arvore(No* raiz){
+    if(!arvore_vazia(raiz)){
+        liberar_arvore(raiz->esquerda);
+        liberar_arvore(raiz->direita);
+        free(raiz);
+    }
+    return;
+}
 
+void salvar_arvore(char* nome_arquivo, No* raiz){
+    if(!arvore_vazia(raiz)){
+        salvar_livro(nome_arquivo, raiz->livro);
+        salvar_arvore(nome_arquivo, raiz->esquerda);
+        salvar_arvore(nome_arquivo, raiz->direita);
+    }
+}
 

@@ -1,15 +1,23 @@
 #include <stdio.h>
 #include "../include/arvore.h"
-#include "../include/util.h"
 
 int main(){
+    char* nome_arquivo = "data/livros.csv";
     No* raiz = inicializar_arvore();
 
-    raiz = carregar_livros("data/livros.csv", raiz);
+    raiz = carregar_livros(nome_arquivo, raiz);
 
-    printf("Livros carregados: \n");
+    Livro livro = cadastrar_livro();
+    inserir_livro(&raiz, livro);
+    liberar_livro(&livro);
+    reiniciar_arquivo(nome_arquivo);
+    salvar_arvore(nome_arquivo, raiz);
+
+    printf("\n---- Livros carregados ---- \n\n");
 
     exibir_arvore(raiz);
+
+    liberar_arvore(raiz);
 
     return 0;
 }
