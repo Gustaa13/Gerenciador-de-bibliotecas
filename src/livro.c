@@ -1,8 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/livro.h"
 #include "../include/util.h"
+
+Biblioteca* iniciar_biblioteca(){
+    Biblioteca* biblioteca = (Biblioteca*)malloc(sizeof(Biblioteca));
+    if (biblioteca == NULL){
+        printf("Erro ao iniciar biblioteca!\n");
+        return NULL;
+    }
+    biblioteca->livros = (Livro*)malloc(sizeof(Livro));
+    biblioteca->tamanho = 0;
+    return biblioteca;
+}
 
 Livro cadastrar_livro(){
     Livro livro;
@@ -46,7 +56,7 @@ void salvar_livro(char* nome_arquivo, Livro livro){
         return;
     }
 
-    fprintf(arquivo, "%i, %s, %s, %s, %i, %s, %i\n",
+    fprintf(arquivo, "%i,%s,%s,%s,%i,%s,%i\n",
         livro.codigo, 
         livro.titulo,
         livro.autor,
@@ -57,4 +67,20 @@ void salvar_livro(char* nome_arquivo, Livro livro){
     );
 
     fclose(arquivo);
+}
+
+void exibir_livro(Livro livro){
+    printf("Livro \"%s\":\n", livro.titulo);
+        printf("  Codigo: %d\n", livro.codigo);
+        printf("  Autor: %s\n", livro.autor);
+        printf("  Genero: %s\n", livro.genero);
+        printf("  Ano: %d\n", livro.ano);
+        printf("  Editora: %s\n", livro.editora);
+        printf("  Paginas: %d\n\n", livro.paginas);
+}
+
+void exibir_biblioteca(Biblioteca biblioteca){
+    for(int i = 0; i < biblioteca.tamanho; i++){
+        exibir_livro(biblioteca.livros[i]);
+    }
 }
