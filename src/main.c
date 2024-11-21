@@ -3,8 +3,13 @@
 #include "../include/util.h"
 
 int main(){
+    No* raiz = inicializar_arvore();
 
-    printf("Hello, World!\n");
+    raiz = carregar_livros("data/livros.csv", raiz);
+
+    printf("Livros carregados: \n");
+
+    exibir_arvore(raiz);
 
     return 0;
 }
