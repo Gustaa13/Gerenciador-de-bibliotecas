@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <locale.h>
 #include "../include/util.h"
 
 int main(){
@@ -8,8 +9,6 @@ int main(){
 
     int input;
 
-    reiniciar_arquivo(nome_arquivo);
-    
     do
     {
         menu();
