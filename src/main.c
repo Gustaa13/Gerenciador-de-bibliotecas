@@ -1,13 +1,25 @@
 #include <stdio.h>
-#include "../include/arvore.h"
 #include "../include/util.h"
 
 int main(){
+    char* nome_arquivo = "data/livros.csv";
+    No* raiz = inicializar_arvore();
+    raiz = carregar_livros(nome_arquivo, raiz);
 
-    printf("Hello, World!\n");
+    int input;
 
+    reiniciar_arquivo(nome_arquivo);
+    
+    do
+    {
+        menu();
+        input = leitor_de_numeros();
+        
+
+        menuOperacoes(input, nome_arquivo, raiz);
+
+    } while (input != 4);
+
+    liberar_arvore(raiz);
     return 0;
 }
-
-// Para compilar: gcc main.c src/arvore.c src/livro.c src/util.c -o biblioteca -g -W 
-// Para executar: ./biblioteca
