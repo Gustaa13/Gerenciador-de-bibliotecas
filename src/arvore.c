@@ -29,7 +29,7 @@ void inserir_livro(No** raiz, Livro livro) {
     } else if (livro.codigo > (*raiz)->livro.codigo) {
         inserir_livro(&(*raiz)->direita, livro); 
     } else {
-        printf("\nEsse id ja esta sendo usado!\n");
+        printf("\nEsse codigo ja esta sendo usado! Tente outro!\n");
     }
 }
 
